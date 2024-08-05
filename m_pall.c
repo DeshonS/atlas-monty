@@ -10,7 +10,6 @@
 void pall(stack_t **stack)
 {
 stack_t *ptr = *stack;
-(void) line_number;
 
 while (ptr != NULL)
 {
