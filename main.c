@@ -1,8 +1,8 @@
 #include "monty.h"
 
-int main(char argc, char *argv[])
+int main(int argc, char *argv[])
 {
-    char line;
+    char *line;
     stack_t *ptr = NULL;
     int i = 0;
     char *n;
