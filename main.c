@@ -1,28 +1,41 @@
 #include "monty.h"
 
-stack_t **global_head;
-
-/**
- * main - the root of the project
- * @argc: how many arguments were passed to a program
- * @argv: arguments vector
- *
- * Return: on scuccess, always EXIT_SUCCESS
- */
-int main(int argc, char *argv[])
+int main(char argc, char *argv[])
 {
-	stack_t *head;
+    char line;
+    stack_t *ptr = NULL;
+    int i = 0;
+    char *n;
+    int val;
 
-	if (argc != 2)
-	{
-		printf("USAGE: monty file\n");
-		exit(EXIT_FAILURE);
-	}
-
-	head = NULL;
-	global_head = &head;
-
-	read_file(argv[1], &head);
-
-	exit(EXIT_SUCCESS);
+    while(fgets(line, sizeof(line), stdin))
+    {
+        n = strtok(line, " \n");
+        i++;
+        if (n == NULL)
+        {
+            continue;
+        }
+    }
+    if (strcmp(n, "push") == 0)
+    {
+        val = atoi(n);
+        push(ptr, n);
+    }
+    else if (strcmp(n, "pall") == 0)
+    {
+        pall(ptr);
+    }
+    else
+    {
+        fprintf(stderr, "L%d: unknown instruction %s\n", i, n);
+        exit(EXIT_FAILURE);
+    }
+    while (ptr != NULL)
+    {
+        stack_t *temp = ptr;
+        ptr = ptr->next;
+        free(temp);
+    }
+    return (0);
 }

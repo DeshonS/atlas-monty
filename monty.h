@@ -9,8 +9,6 @@
 #include <ctype.h>
 #include <stdbool.h>
 
-extern stack_t **global_head;
-
 /**
  * struct stack_s - doubly linked list representation of a stack (or queue)
  * @n: integer
@@ -41,8 +39,7 @@ char *opcode;
 void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
-void pall(stack_t **stack, unsigned int line_number);
+void pall(stack_t **stack);
 void push(stack_t **stack, unsigned int line_number);
-void freeall(void);
 
 #endif
