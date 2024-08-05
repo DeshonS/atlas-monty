@@ -14,7 +14,7 @@ stack_t *ptr = *stack;
 
 while (ptr != NULL)
 {
-printf(stdout, "%d\n", ptr->n);
+fprintf(stdout, "%d\n", ptr->n);
 ptr = ptr ->next;
 }
 }
