@@ -20,11 +20,11 @@ int main(int argc, char *argv[])
     if (strcmp(n, "push") == 0)
     {
         val = atoi(n);
-        push(ptr, n);
+        push(&ptr, n);
     }
     else if (strcmp(n, "pall") == 0)
     {
-        pall(ptr);
+        pall(&ptr);
     }
     else
     {
