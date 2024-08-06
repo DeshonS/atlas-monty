@@ -27,11 +27,9 @@ int main(void)
         else
         {
             fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
+            exit(EXIT_FAILURE);
         }
-        if (feof(stdin))
-        {
-            break;
-        }
+        exit(EXIT_SUCCESS);
     }
 
     while (stack != NULL)
