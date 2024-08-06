@@ -5,9 +5,9 @@ int main(void)
     stack_t *stack = NULL;
     char line[256];
     unsigned int line_number = 0;
-
     while (fgets(line, sizeof(line), stdin) != NULL)
     {
+        printf("Reading line %d, %s", line_number, line);
         line_number++;
         char *opcode = strtok(line, " \t\r\n");
 
@@ -27,6 +27,10 @@ int main(void)
         else
         {
             fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
+        }
+        if (feof(stdin))
+        {
+            break;
         }
     }
 
