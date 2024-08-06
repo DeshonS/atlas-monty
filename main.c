@@ -19,10 +19,12 @@ int main(void)
         if (strcmp(opcode, "push") == 0)
         {
             push(&stack, line_number);
+            exit(EXIT_SUCCESS);
         }
         else if (strcmp(opcode, "pall") == 0)
         {
             pall(&stack);
+            exit(EXIT_SUCCESS);
         }
         else
         {
@@ -31,7 +33,6 @@ int main(void)
         }
     }
 
-    // Free the stack
     while (stack != NULL)
     {
         stack_t *temp = stack;
