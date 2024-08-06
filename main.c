@@ -6,7 +6,7 @@ int main(void)
     char line[256];
     unsigned int line_number = 0;
 
-    while (fgets(line, sizeof(line), stdin))
+    while (fgets(line, sizeof(line), stdin) != NULL)
     {
         line_number++;
         char *opcode = strtok(line, " \t\r\n");
@@ -19,17 +19,14 @@ int main(void)
         if (strcmp(opcode, "push") == 0)
         {
             push(&stack, line_number);
-            exit(EXIT_SUCCESS);
         }
         else if (strcmp(opcode, "pall") == 0)
         {
             pall(&stack);
-            exit(EXIT_SUCCESS);
         }
         else
         {
             fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
-            exit(EXIT_FAILURE);
         }
     }
 
