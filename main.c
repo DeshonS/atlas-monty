@@ -1,43 +1,34 @@
 #include "monty.h"
 
-int main(void)
-{
-    stack_t *stack = NULL;
-    char line[256];
+int main(int argc, char *argv[]) {
+    if (argc != 2) {
+        fprintf(stderr, "USAGE: monty file\n");
+        exit(EXIT_FAILURE);
+    }
+
+    FILE *file = fopen(argv[1], "r");
+    if (!file) {
+        fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
+        exit(EXIT_FAILURE);
+    }
+
+    // Initialize the global stack
+    global_stack = NULL;
+
+    // Parse the file line by line and execute the instructions
+    char *line = NULL;
+    size_t len = 0;
     unsigned int line_number = 0;
-    while (fgets(line, sizeof(line), stdin) != NULL)
-    {
-        printf("Reading line %d, %s", line_number, line);
+
+    while (getline(&line, &len, file) != -1) {
         line_number++;
-        char *opcode = strtok(line, " \t\r\n");
-
-        if (opcode == NULL)
-        {
-            continue;
-        }
-
-        if (strcmp(opcode, "push") == 0)
-        {
-            push(&stack, line_number);
-        }
-        else if (strcmp(opcode, "pall") == 0)
-        {
-            pall(&stack);
-        }
-        else
-        {
-            fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
-            exit(EXIT_FAILURE);
-        }
-        exit(EXIT_SUCCESS);
+        // Parse the opcode and arguments from the line
+        // Call the corresponding function pointer from instruction_t
     }
 
-    while (stack != NULL)
-    {
-        stack_t *temp = stack;
-        stack = stack->next;
-        free(temp);
-    }
+    // Clean up and close the file
+    free(line);
+    fclose(file);
 
-    return 0;
-}
+    return EXIT_SUCCESS;
+}        
