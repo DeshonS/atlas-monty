@@ -16,13 +16,13 @@ num = strtok(NULL, " \n");
 if (num == NULL)
 {
 fprintf(stderr, "L<%u>: usage: push integer\n", line_number);
-exit(EXIT_FAILURE);
+exit(1);
 }
 node = malloc(sizeof(stack_t));
 if(node == NULL)
 {
 fprintf(stderr, "Error: Malloc failure\n");
-exit(EXIT_FAILURE);
+exit(1);
 }
 node->n = atoi(num);
 node->prev = NULL;
