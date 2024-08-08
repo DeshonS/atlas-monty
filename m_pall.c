@@ -7,13 +7,12 @@
  * Return: None
  */
 
-void pall(stack_t **stack)
+void pall(stack_t **stack, unsigned int line_number) 
 {
-stack_t *ptr = *stack;
-
-while (ptr != NULL)
-{
-fprintf(stdout, "%d\n", ptr->n);
-ptr = ptr ->next;
-}
+    stack_t *current = *stack;
+    while (current) {
+        printf("%d\n", current->n);
+        current = current->next;
+    }
+    (void)line_number;
 }

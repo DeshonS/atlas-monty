@@ -12,21 +12,16 @@ int main(int argc, char *argv[]) {
         exit(EXIT_FAILURE);
     }
 
-    // Initialize the global stack
     global_stack = NULL;
 
-    // Parse the file line by line and execute the instructions
     char *line = NULL;
     size_t len = 0;
     unsigned int line_number = 0;
 
     while (getline(&line, &len, file) != -1) {
         line_number++;
-        // Parse the opcode and arguments from the line
-        // Call the corresponding function pointer from instruction_t
     }
 
-    // Clean up and close the file
     free(line);
     fclose(file);
 
