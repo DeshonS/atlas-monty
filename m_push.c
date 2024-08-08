@@ -10,13 +10,13 @@
 void push(stack_t **stack, unsigned int line_number)
 {
 stack_t *node;
-char *num;
+int *num;
 
-num = strtok(NULL, " \n");
+num = strtok(NULL, " ");
 if (num == NULL)
 {
 fprintf(stderr, "L<%u>: usage: push integer\n", line_number);
-exit(1);
+exit(EXIT_FAILURE);
 }
 node = malloc(sizeof(stack_t));
 if(node == NULL)
@@ -25,11 +25,7 @@ fprintf(stderr, "Error: Malloc failure\n");
 exit(1);
 }
 node->n = atoi(num);
-node->prev = NULL;
 node->next = *stack;
-if(*stack != NULL)
-{
-(*stack)->prev = node;
-}
+
 *stack = node;
 }
